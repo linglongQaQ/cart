@@ -1,0 +1,72 @@
+<head>
+    <meta charset="UTF-8">
+    <title>商品页面</title>
+    <!--1.引入bootstrap全局统一样式； -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!--2.引入layerUI样式； -->
+    <link rel="stylesheet" href="layer/layer/theme/default/layer.css">
+    <!--3.引入jquery框架； -->
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <!--4.引入bootstrap框架； -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!--5.引入LayerUi的js库； -->
+    <script src="layer/layer/layer.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading text-center">
+            <h1>手机商城</h1>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered table-hover text-center">
+                <thead>
+                    <tr>
+                        <td>图片</td>
+                        <td>编号</td>
+                        <td>名称</td>
+                        <td>标题</td>
+                        <td>价格</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody id="tb">
+
+                </tbody>
+
+            </table>
+            <div>
+                <a href="/view" class="btn btn-block btn-success">查看购物车</a>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            git出品，必属精品
+        </div>
+    </div>
+</div>
+<script>
+    var index; //1.定义一个变量；
+    $(function () {
+        index = layer.load(1);  //2. 加载中。。。。
+        $.get("/phone",function (data) {
+            var tb = "";
+            $(data).each(function (i, v) {
+                tb += "<tr>";
+                tb += "<td><img style='width: 100px; height: 100px;' src='img/"+v.img+"'/></td>";
+                tb += "<td>"+v.id+"</td>";
+                tb += "<td>"+v.pname+"</td>";
+                tb += "<td>"+v.ptitle+"</td>";
+                tb += "<td>"+v.price+"元</td>";
+                tb += "<td>";
+                tb += "<a class='btn btn-danger' href='/add?pid="+v.id+"'> 加入购物车 </a>";
+                tb += "</td>";
+                tb += "</tr>";
+            });
+            $("#tb").html(tb);
+            layer.close(index); //3.关闭加载中。。。。
+        },"json");
+    })
+
+</script>
+</body>
+</html>

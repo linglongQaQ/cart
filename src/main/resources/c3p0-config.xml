@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--配置多个数据源-->
+<c3p0-config>
+<!--        <named-config name="mysql">
+             <property name="driverClass">com.mysql.jdbc.Driver</property>
+            <property name="jdbcUrl">jdbc:mysql:///test2?useSSL=false</property>
+            <property name="user">root</property>
+            <property name="password">123456</property>
+            <property name="initialPoolSize">5</property>
+            <property name="maxPoolSize">15</property>
+        </named-config>-->
+
+    <default-config>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql:///test1?useSSL=false</property>
+        <property name="user">root</property>
+        <property name="password">123456</property>
+        <property name="initialPoolSize">5</property>
+        <property name="maxPoolSize">15</property>
+    </default-config>
+
+
+</c3p0-config>
